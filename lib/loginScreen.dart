@@ -159,164 +159,176 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Form(
-        key: _formKey,
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: EdgeInsets.all(8.0),
-            child: Container(
-              margin: const EdgeInsets.only(top: 120.0),
-              child: Column(
 
-                children: [
-                  SizedBox(height: 15.0,),
-                  Text("Problems & Solutions",
-                    style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.w700  , fontFamily: "Brand Bold"),
-                    textAlign: TextAlign.center,
+      body: Container(
+        width: double.infinity,
+        height: double.infinity,
+        decoration: BoxDecoration(
+            image: DecorationImage(
+                image: AssetImage("images/admin.jpg"),   fit: BoxFit.cover)),
+        child: Form(
 
-                  ),
-                  SizedBox(height: 40.0,),
-                  Text(
-                    "Login as a User",
-                    style: TextStyle(fontSize: 24.0,fontFamily: "Brand Bold"),
-                    textAlign: TextAlign.center,
-                  ),
-                  Padding(
-                    padding: EdgeInsets.all(20.0),
-                    child: Column(
-                      children: [
-                        SizedBox(height: 1.0,),
-                        TextFormField(
-                          controller: emailTextEditingControler,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please Enter Email';
-                            } else if (!value.contains('@')) {
-                              return 'Please Enter Valid Email';
-                            }
-                            return null;
-                          },
-                          keyboardType: TextInputType.emailAddress,
-                          decoration: InputDecoration(
-                            labelText: "Email",
-                            labelStyle: TextStyle(
-                              fontSize: 14.0,
-                            ),
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 10.0,
-                            ),
-                          ),
-                          style: TextStyle(fontSize: 14.0),
-                        ),
-                        SizedBox(height: 1.0,),
-                        TextFormField(
-                          obscureText: _obscureText,
-                          controller: passwordTextEditingControler,
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please Enter Password';
-                            }
-                            return null;
-                          },
-                          decoration: InputDecoration(
-                            suffixIcon: IconButton(
-                              icon: Icon(
-                                // Based on passwordVisible state choose the icon
-                                _obscureText
-                                    ? Icons.visibility
-                                    : Icons.visibility_off,
-                                color: Theme.of(context).primaryColorDark,
-                              ),
-                              onPressed: () {
-                                // Update the state i.e. toogle the state of passwordVisible variable
-                                setState(() {
-                                  _obscureText = !_obscureText;
-                                });
-                              },
-                            ),
-                            labelText: "Password",
-                            labelStyle: TextStyle(
-                              fontSize: 14.0,
-                            ),
-                            hintStyle: TextStyle(
-                              color: Colors.grey,
-                              fontSize: 10.0,
-                            ),
-                          ),
-                          style: TextStyle(fontSize: 14.0),
-                        ),
-                        SizedBox(height: 10.0,),
-                        isLoading
-                            ? CircularProgressIndicator(
-                          strokeWidth: 5,
-                        ) :ElevatedButton(
-                            onPressed: () async{
-                            /*  setState(() {
-                                isLoading = true;
-                              });*/
+          key: _formKey,
 
-                                if (_formKey.currentState.validate()) {
-                                  setState(() {
-                                    email = emailTextEditingControler.text;
-                                    password = passwordTextEditingControler.text;
-                                  });
-                                  userLogin();
-                                }
+          child: SingleChildScrollView(
+
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+
+              child: Container(
+                margin: const EdgeInsets.only(top: 120.0),
+                child: Column(
+
+                  children: [
+                    SizedBox(height: 15.0,),
+                    Text("Problems & Solutions",
+                      style: TextStyle(fontSize: 24.0,fontWeight: FontWeight.w700  , fontFamily: "Brand Bold"),
+                      textAlign: TextAlign.center,
+
+                    ),
+                    SizedBox(height: 40.0,),
+                    Text(
+                      "Login as a User",
+                      style: TextStyle(fontSize: 24.0,fontFamily: "Brand Bold"),
+                      textAlign: TextAlign.center,
+                    ),
+                    Padding(
+                      padding: EdgeInsets.all(20.0),
+                      child: Column(
+                        children: [
+                          SizedBox(height: 1.0,),
+                          TextFormField(
+                            controller: emailTextEditingControler,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please Enter Email';
+                              } else if (!value.contains('@')) {
+                                return 'Please Enter Valid Email';
+                              }
+                              return null;
                             },
+                            keyboardType: TextInputType.emailAddress,
+                            decoration: InputDecoration(
+                              labelText: "Email",
+                              labelStyle: TextStyle(
+                                fontSize: 14.0,
+                              ),
+                              hintStyle: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 10.0,
+                              ),
+                            ),
+                            style: TextStyle(fontSize: 14.0),
+                          ),
+                          SizedBox(height: 1.0,),
+                          TextFormField(
+                            obscureText: _obscureText,
+                            controller: passwordTextEditingControler,
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please Enter Password';
+                              }
+                              return null;
+                            },
+                            decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  // Based on passwordVisible state choose the icon
+                                  _obscureText
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                  color: Theme.of(context).primaryColorDark,
+                                ),
+                                onPressed: () {
+                                  // Update the state i.e. toogle the state of passwordVisible variable
+                                  setState(() {
+                                    _obscureText = !_obscureText;
+                                  });
+                                },
+                              ),
+                              labelText: "Password",
+                              labelStyle: TextStyle(
+                                fontSize: 14.0,
+                              ),
+                              hintStyle: TextStyle(
+                                color: Colors.grey,
+                                fontSize: 10.0,
+                              ),
+                            ),
+                            style: TextStyle(fontSize: 14.0),
+                          ),
+                          SizedBox(height: 10.0,),
+                          isLoading
+                              ? CircularProgressIndicator(
+                            strokeWidth: 5,
+                          ) :ElevatedButton(
+                              onPressed: () async{
+                              /*  setState(() {
+                                  isLoading = true;
+                                });*/
 
-                            child: Container(
-                              height: 50.0,
-                              child: Center(
-                                child: Text(
-                                  "Login",
-                                  style: TextStyle(
-                                      fontSize: 18.0,
-                                      fontFamily: "Brand Bold"
+                                  if (_formKey.currentState.validate()) {
+                                    setState(() {
+                                      email = emailTextEditingControler.text;
+                                      password = passwordTextEditingControler.text;
+                                    });
+                                    userLogin();
+                                  }
+                              },
+
+                              child: Container(
+                                height: 50.0,
+                                child: Center(
+                                  child: Text(
+                                    "Login",
+                                    style: TextStyle(
+                                        fontSize: 18.0,
+                                        fontFamily: "Brand Bold"
+                                    ),
                                   ),
                                 ),
+                              )
+                          ),
+                          Align(
+                            alignment: Alignment.centerRight,
+                            child: TextButton(
+                              onPressed: () {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                    builder: (context) => ForgotPassword(),
+                                    )
+                                );
+                              },
+                              child: Text(
+                                'Forgot Password ?',
+                                style: TextStyle(fontSize: 13.0),
                               ),
-                            )
-                        ),
-                        Align(
-                          alignment: Alignment.centerRight,
-                          child: TextButton(
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                  builder: (context) => ForgotPassword(),
-                                  )
-                              );
-                            },
-                            child: Text(
-                              'Forgot Password ?',
-                              style: TextStyle(fontSize: 13.0),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
-                  ),
-                  TextButton(  onPressed: () {
-                    Navigator.pushNamedAndRemoveUntil(context, RegistrationScreen.idScreen, (route) => false);
-                  },
-                    child: Text(
-                        "Do not have an Account? Register here"
+                    TextButton(  onPressed: () {
+                      Navigator.pushNamedAndRemoveUntil(context, RegistrationScreen.idScreen, (route) => false);
+                    },
+                      child: Text(
+                          "Do not have an Account? Register here"
+                      ),
                     ),
-                  ),
-                  Text("OR"),
-                  ElevatedButton(onPressed: (){
-                    _startVerification();
-                   }, child: Text("Login as a Guest")),
-                  ElevatedButton(onPressed: ()
-                  {adminLogin();
-                  }, child: Text("Login as a Admin")),
-               /*   Center(
-                    child: content,
-                  ),*/
+                    Text("OR"),
+                    ElevatedButton(onPressed: (){
+                      _startVerification();
+                     }, child: Text("Login as a Guest")),
+                    ElevatedButton(onPressed: ()
+                    {adminLogin();
+                    }, child: Text("Login as a Admin")),
+                 /*   Center(
+                      child: content,
+                    ),*/
 
-                ],
+                  ],
+                ),
               ),
             ),
           ),
